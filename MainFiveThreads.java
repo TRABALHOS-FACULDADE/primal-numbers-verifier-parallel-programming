@@ -2,6 +2,7 @@ import utils.ImportantFunctions;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -18,6 +19,7 @@ public class MainFiveThreads {
 
         try {
             Scanner scanner = new Scanner(new File(input));
+            PrintWriter writer = new PrintWriter(output);
 
             long startTime = System.currentTimeMillis();
             int linesReaded = 0;
@@ -29,6 +31,7 @@ public class MainFiveThreads {
                     int formattedLineNumber = Integer.parseInt(line);
                     if (ImportantFunctions.primalVerifier(formattedLineNumber)) {
                         primals.add(formattedLineNumber);
+                        writer.println(formattedLineNumber);
                     }
                 });
 
@@ -50,6 +53,7 @@ public class MainFiveThreads {
             long endTime = System.currentTimeMillis();
             tempoExecucao = endTime - startTime;
             scanner.close();
+            writer.close();
         } catch (FileNotFoundException e) {
             System.err.println("Erro ao ler o arquivo: " + e.getMessage());
         }
