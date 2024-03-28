@@ -11,27 +11,31 @@ public class MainFiveThreads {
     static final int TOTAL_THREADS = 5;
     static final String input = "./assets/input_data.txt";
     static final String output = "./assets/output_data_five_threads.txt";
+    static final String outputTemp = "./assets/output_data_five_threads_temp.txt";
 
     public static void main(String[] args) {
         ArrayList<Integer> primals = new ArrayList<>();
         ArrayList<Thread> tasks = new ArrayList<>();
-        long tempoExecucao = 0;
 
         try {
             Scanner scanner = new Scanner(new File(input));
             PrintWriter writer = new PrintWriter(output);
+            PrintWriter tempWriter = new PrintWriter(outputTemp);
 
-            long startTime = System.currentTimeMillis();
             int linesReaded = 0;
             while (scanner.hasNextLine()) {
 
                 String line = scanner.nextLine();
 
                 Thread task = new Thread(() -> {
+                    long startTime = System.currentTimeMillis();
                     int formattedLineNumber = Integer.parseInt(line);
                     if (ImportantFunctions.primalVerifier(formattedLineNumber)) {
                         primals.add(formattedLineNumber);
                         writer.println(formattedLineNumber);
+                        long endTime = System.currentTimeMillis();
+                        long tempoExecucao = endTime - startTime;
+                        tempWriter.println(tempoExecucao);
                     }
                 });
 
@@ -50,14 +54,11 @@ public class MainFiveThreads {
                     }
                 }
             }
-            long endTime = System.currentTimeMillis();
-            tempoExecucao = endTime - startTime;
             scanner.close();
             writer.close();
+            tempWriter.close();
         } catch (FileNotFoundException e) {
             System.err.println("Erro ao ler o arquivo: " + e.getMessage());
         }
-        ImportantFunctions.printPrimalsList(primals);
-        System.out.println("Tempo de execução: " + tempoExecucao + " ms");
     }
 }
