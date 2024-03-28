@@ -13,4 +13,3 @@
 
 - Java (execução das Threads)
 - Python (geração de gráficos)
-- Bash (rotina automática de comandos)

@@ -14,7 +14,7 @@ public class ImportantFunctions {
     }
 
     public static Boolean primalVerifier(Integer number) {
-        if (number == 2) return true;
+        if (number > 0 && number <= 2) return true;
 
         for (int i=2; i<= Math.sqrt(number); i++) {
             if (number % i == 0) return false;
