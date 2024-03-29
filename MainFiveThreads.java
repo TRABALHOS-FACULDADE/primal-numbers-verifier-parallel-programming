@@ -26,10 +26,10 @@ public class MainFiveThreads {
             while (scanner.hasNextLine()) {
 
                 String line = scanner.nextLine();
+                int formattedLineNumber = Integer.parseInt(line);
 
                 Thread task = new Thread(() -> {
                     long startTime = System.currentTimeMillis();
-                    int formattedLineNumber = Integer.parseInt(line);
                     if (ImportantFunctions.primalVerifier(formattedLineNumber)) {
                         primals.add(formattedLineNumber);
                         writer.println(formattedLineNumber);
@@ -41,9 +41,9 @@ public class MainFiveThreads {
 
                 tasks.add(linesReaded % TOTAL_THREADS, task);
                 linesReaded++;
+                task.start();
 
                 if (linesReaded % TOTAL_THREADS == 0 || !scanner.hasNextLine()) {
-                    tasks.get(linesReaded % TOTAL_THREADS).start();
 
                     for (int i = 0; i < linesReaded % TOTAL_THREADS; i++) {
                         try {

@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 import pandas as pd
-import numpy as np
 
 def graphs():
     df1 = pd.read_csv("assets/output_data_one_thread.txt", delimiter=" ")
@@ -9,12 +8,10 @@ def graphs():
     df5Temp = pd.read_csv("assets/output_data_five_threads_temp.txt", delimiter=" ")
     df10 = pd.read_csv("assets/output_data_ten_threads.txt", delimiter=" ")
     df10Temp = pd.read_csv("assets/output_data_ten_threads_temp.txt", delimiter=" ")
-    print(df1.values.reshape(1, 1).tolist())
-    concat = np.array([df1.values.reshape(1, 1), df5.values.reshape(1, 1), df10.values.reshape(1, 1)])
-    lista = np.unique(concat)
-    plt.plot(df1Temp.values, lista)
-    plt.plot(df5Temp.values, lista)
-    plt.plot(df10Temp.values, lista)
+
+    plt.plot(df1Temp.values, df1.values)
+    plt.plot(df5Temp.values, df5.values)
+    plt.plot(df10Temp.values, df10.values)
     plt.show()
 
 if __name__ == '__main__':
