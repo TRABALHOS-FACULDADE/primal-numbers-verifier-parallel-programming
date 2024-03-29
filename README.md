@@ -21,6 +21,17 @@
 3. Executar o arquivo MainTenThreads.java
 4. Executar o arquivo graphs.py
 
+## Resultado
+
+Foram separadas 100 amostras dos resultados para análise gráfica.
+
+<img src="assets/graph.png"/>
+
+A partir da análise dos gráficos, é possível perceber como na maioria dos casos, o cenário de 5
+Threads obteve um resultado melhor em termos de tempo de execução, chegando a no máximo 2 milissegundos,
+enquanto o de 1 Thread chegou a um máximo de 4 milissegundos. O cenário intermediário foi o de 10
+Threads, chegando a um máximo de 3 milissegundos.
+
 ## Análise
 
 Os códigos seguiram por uma única via de executar as Threads. Porém, havendo mais de
