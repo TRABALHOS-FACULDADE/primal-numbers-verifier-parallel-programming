@@ -24,8 +24,8 @@ public class Main {
                 String line = scanner.nextLine();
                 int formattedLineNumber = Integer.parseInt(line);
 
-                long startTime = System.currentTimeMillis();
                 Thread task = new Thread(() -> {
+                    long startTime = System.currentTimeMillis();
                     if (ImportantFunctions.primalVerifier(formattedLineNumber)) {
                         primals.add(formattedLineNumber);
                         writer.println(formattedLineNumber);

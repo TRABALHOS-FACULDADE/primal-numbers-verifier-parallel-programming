@@ -9,9 +9,9 @@ def graphs():
     df10 = pd.read_csv("assets/output_data_ten_threads.txt", delimiter=" ")
     df10Temp = pd.read_csv("assets/output_data_ten_threads_temp.txt", delimiter=" ")
 
-    plt.plot(df1Temp.values, df1.values)
-    plt.plot(df5Temp.values, df5.values)
-    plt.plot(df10Temp.values, df10.values)
+    plt.plot(df1Temp.values[:100], color='red', label='1 Thread')
+    plt.plot(df5Temp.values[:100], color='green', label='5 Threads')
+    plt.plot(df10Temp.values[:100], color='blue', label='10 Threads')
     plt.show()
 
 if __name__ == '__main__':
