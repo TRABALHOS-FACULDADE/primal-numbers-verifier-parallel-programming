@@ -14,6 +14,7 @@ public class MainFiveThreads {
     static final String outputTemp = "./assets/output_data_five_threads_temp.txt";
 
     public static void main(String[] args) {
+        long startTimeProgram = System.currentTimeMillis();
         ArrayList<Integer> primals = new ArrayList<>();
         ArrayList<Thread> tasks = new ArrayList<>();
 
@@ -57,6 +58,8 @@ public class MainFiveThreads {
             scanner.close();
             writer.close();
             tempWriter.close();
+            long endTimeProgram = System.currentTimeMillis();
+            System.out.println("Tempo de execução do programa: " + (endTimeProgram - startTimeProgram) + " ms");
         } catch (FileNotFoundException e) {
             System.err.println("Erro ao ler o arquivo: " + e.getMessage());
         }

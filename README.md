@@ -32,6 +32,13 @@ Threads obteve um resultado melhor em termos de tempo de execução, chegando a 
 enquanto o de 1 Thread chegou a um máximo de 4 milissegundos. O cenário intermediário foi o de 10
 Threads, chegando a um máximo de 3 milissegundos.
 
+Através do código, também foi possível observar o tempo de execução do programa como
+um todo para cada cenário de Threads.
+
+| 1 Thread | 5 Threads | 10 Threads |
+|----------|-----------|------------|
+| 3490 ms  | 3474 ms   | 3354 ms    |
+
 ## Análise
 
 Os códigos seguiram por uma única via de executar as Threads. Porém, havendo mais de

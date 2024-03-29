@@ -14,6 +14,24 @@
 - Java (execução das Threads)
 - Python (geração de gráficos)
 
+## Passo a passo
+
+1. Executar o arquivo Main.java
+2. Executar o arquivo MainFiveThreads.java
+3. Executar o arquivo MainTenThreads.java
+4. Executar o arquivo graphs.py
+
+## Resultado
+
+Foram separadas 100 amostras dos resultados para análise gráfica.
+
+<img src="assets/graph.png"/>
+
+A partir da análise dos gráficos, é possível perceber como na maioria dos casos, o cenário de 5
+Threads obteve um resultado melhor em termos de tempo de execução, chegando a no máximo 2 milissegundos,
+enquanto o de 1 Thread chegou a um máximo de 4 milissegundos. O cenário intermediário foi o de 10
+Threads, chegando a um máximo de 3 milissegundos.
+
 ## Análise
 
 Os códigos seguiram por uma única via de executar as Threads. Porém, havendo mais de
@@ -45,10 +63,13 @@ Algorítmo sendo executado dentro da Thread:
 
 ```java
 Thread task = new Thread(() -> {
-    int formattedLineNumber = Integer.parseInt(line);
+    long startTime = System.currentTimeMillis();
     if (ImportantFunctions.primalVerifier(formattedLineNumber)) {
         primals.add(formattedLineNumber);
         writer.println(formattedLineNumber);
+        long endTime = System.currentTimeMillis();
+        long tempoExecucao = endTime - startTime;
+        tempWriter.println(tempoExecucao);
     }
 });
 ```
@@ -56,14 +77,22 @@ Thread task = new Thread(() -> {
 Após os números primos serem adicionados à ArrayList `primals`, eles são alocados
 em um novo arquivo de texto com o auxílio do `PrintWriter`.
 
+Caso haja uma Thread, o seguinte bloco de código é executado:
+
+```java
+tasks.add(linesReaded % TOTAL_THREADS, task);
+linesReaded++;
+task.start(); // A Thread é iniciada aqui
+```
+
 Caso haja mais de uma Thread, o seguinte bloco de código é executado:
 
 ```java
 tasks.add(linesReaded % TOTAL_THREADS, task);
 linesReaded++;
+task.start(); // As Threads são iniciadas aqui
 
 if (linesReaded % TOTAL_THREADS == 0 || !scanner.hasNextLine()) {
-    tasks.get(linesReaded % TOTAL_THREADS).start(); // As Threads são iniciadas aqui
     for (int i = 0; i < linesReaded % TOTAL_THREADS; i++) {
         try {
             tasks.get(i).join();
